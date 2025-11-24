@@ -57,9 +57,9 @@ const RESTAURANT = {
 // ROUTES
 
 app.get('/', (req, res) => {
-  res.send('Hello There!');
+  res.render('home.ejs', {
+    })
 });
-
 
 // SERVER LISTENER
 app.listen(3000);
