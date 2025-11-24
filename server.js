@@ -58,7 +58,12 @@ const RESTAURANT = {
 
 app.get('/', (req, res) => {
   res.render('home.ejs', {
+    msg: 'here it is',
+    title: RESTAURANT.name
     })
+    // SOMETHING NEEDS TO HAPPEN HERE
+    // I think if I redirect the info from the RESTAURANT variable
+    // into here it should work and then be accessible by home.ejs using script tags
 });
 
 // SERVER LISTENER
