@@ -1,0 +1,21 @@
+<!-- partial html head -->
+<%- include('./partials/html-head.ejs') %>
+
+<!-- nav bar -->
+<%- include('./partials/nav.ejs') %>
+
+
+<ul>
+    <!-- <% filteredItems.forEach(item => { %>
+        <li><%= item.name %> - <%= item.price %></li>
+    <% }) %> -->
+
+    <% filteredItems.forEach((item, index) => {%>
+        <!-- <a href="/<%= index %>"> -->
+        <li> <%= item.name %> - $<%= item.price %></li>
+    <% })    %>
+    <!-- so we know how to have all the array objects become a link (that doesnt do anything href)
+     but the question is do we have the knowledge to make those become worling links
+     
+     wouldnt it have to be that the href is an index of the array and then in the route the :index needs to be connected to that created href -->
+</ul>

@@ -1,6 +1,13 @@
 // REQUIREMENTS
 const express = require('express');
 const app = express();
+const morgan = require('morgan')
+
+// MIDDLEWARE
+app.use(express.urlencoded({ extended: false }))
+app.use(morgan('dev'))
+
+
 
 // Restaurant data
 
@@ -53,18 +60,46 @@ const RESTAURANT = {
   ]
 }
 
-
 // ROUTES
 
+// home route
 app.get('/', (req, res) => {
   res.render('home.ejs', {
     msg: 'here it is',
-    title: RESTAURANT.name
+    title: RESTAURANT.name,
+    RESTAURANT: RESTAURANT
+    // this makes the Restaurant code in server.js available to home.ejs
+
     })
-    // SOMETHING NEEDS TO HAPPEN HERE
-    // I think if I redirect the info from the RESTAURANT variable
-    // into here it should work and then be accessible by home.ejs using script tags
+   
 });
+
+
+// menu route
+app.get('/menu', (req, res) => {
+  res.render('menu.ejs', {
+    
+    RESTAURANT: RESTAURANT
+    // this makes the Restaurant code in server.js available to home.ejs
+
+    })
+   
+});
+
+
+// category route
+app.get('/menu/:category', (req, res) => {
+  const category = req.params.category
+  const filteredItems = RESTAURANT.menu.filter(item => item.category === category)
+  res.render('category.ejs', {
+    RESTAURANT: RESTAURANT,
+    category,
+    filteredItems
+
+    })
+});
+   
+
 
 // SERVER LISTENER
 app.listen(3000);
